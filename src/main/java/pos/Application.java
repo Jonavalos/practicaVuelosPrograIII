@@ -30,23 +30,23 @@ public class Application {
                 Service.instance().stop();
             }
         });
-        //Activos
-        //pos.presentation.Activos.Model activosModel = new pos.presentation.Activos.Model();
-        //pos.presentation.Activos.View activosView = new pos.presentation.Activos.View();
-        //activosController = new pos.presentation.Activos.Controller(activosView, activosModel);
+        //vuelos
+        pos.presentation.vuelos.Model vuelosModel = new pos.presentation.vuelos.Model();
+        pos.presentation.vuelos.View vuelosView = new pos.presentation.vuelos.View();
+        vuelosController = new pos.presentation.vuelos.Controller(vuelosView, vuelosModel);
 
-        //tabbedPane.addTab("Activos  ", activosView.getPanel());
+        tabbedPane.addTab("vuelos  ", vuelosView.getPanel());
 
 
         // Ventana
         window.setSize(1000,550);
         window.setResizable(false);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setTitle("Activos");
+        window.setTitle("vuelos");
         window.setVisible(true);
     }
 
-    //public static pos.presentation.Activos.Controller activosController;
+    public static pos.presentation.vuelos.Controller vuelosController;
 
     public static JFrame window;
     public final static int MODE_CREATE=1;

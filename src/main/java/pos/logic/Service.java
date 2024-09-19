@@ -46,11 +46,11 @@ public class Service {
     }
 
     public Ciudad read(Ciudad e){
-        return data.getCiudades().stream().filter(i->i.getId().equals(e.getId())).findFirst().orElse(null);
+        return data.getCiudades().stream().filter(i->i.getNombre().equals(e.getNombre())).findFirst().orElse(null);
     }
-    public Ciudad read(String id){
-        return data.getCiudades().stream().filter(i-> i.getId().equals(id)).findFirst().orElse(null);
-    }
+//    public Ciudad read(String id){
+//        return data.getCiudades().stream().filter(i-> i.getId().equals(id)).findFirst().orElse(null);
+//    }
 
 
     // ----------------------Vuelos-------------------------
@@ -65,10 +65,22 @@ public class Service {
         else throw new Exception("Error create vuelo :(");
     }
 
-    public Vuelo read(Vuelo e) throws Exception{
-        Vuelo result = data.getVuelos().stream().filter(i->i.getNumero()==(e.getNumero())).findFirst().orElse(null);
+    public Vuelo readNumero(Vuelo e) throws Exception{ //vuelos que coincidan con su destino
+        Vuelo result = data.getVuelos().stream().filter(i->i.getNumero().equals(e.getNumero())).findFirst().orElse(null);
         if (result!=null) {
-            result.setDestino(read(result.getOrigen()));
+            result.setOrigen(read(result.getOrigen()));
+            result.setDestino(read(result.getDestino()));
+            //result.setDestino(new Ciudad(result.getDestino().getId(), result.getDestino().getNombre(), result.getDestino().getGmt()));
+            //result.setDestino(new Ciudad(result.getOrigen().getId(), result.getOrigen().getNombre(), result.getOrigen().getGmt()));
+            return result;
+        }
+        else throw new Exception("Error read vuelo :(");
+    }
+
+    public Vuelo read(Vuelo e) throws Exception{ //vuelos que coincidan con su destino
+        Vuelo result = data.getVuelos().stream().filter(i->i.getDestino().getNombre().equals(e.getDestino().getNombre())).findFirst().orElse(null);
+        if (result!=null) {
+            result.setOrigen(read(result.getOrigen()));
             result.setDestino(read(result.getDestino()));
             //result.setDestino(new Ciudad(result.getDestino().getId(), result.getDestino().getNombre(), result.getDestino().getGmt()));
             //result.setDestino(new Ciudad(result.getOrigen().getId(), result.getOrigen().getNombre(), result.getOrigen().getGmt()));
@@ -94,7 +106,7 @@ public class Service {
 
     public List<Vuelo> search(Vuelo e){
         return  data.getVuelos().stream()
-                .filter(i -> i.getNumero().equals(e.getNumero()) && i.getNumero().equals(e.getNumero()))
+                .filter(i -> i.getDestino().getNombre().equals(e.getDestino().getNombre()) || i.getOrigen().getNombre().equals(e.getOrigen().getNombre()))
                 .sorted(Comparator.comparing(Vuelo::getNumero).thenComparing(Vuelo::getNumero))
                 .collect(Collectors.toList());
     }

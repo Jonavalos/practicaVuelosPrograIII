@@ -1,6 +1,7 @@
 package pos.presentation.vuelos;
 
 import pos.Application;
+import pos.logic.Ciudad;
 import pos.logic.Vuelo;
 import pos.logic.Service;
 
@@ -15,6 +16,7 @@ public class Controller {
         this.model = model;
         view.setController(this);
         view.setModel(model);
+        model.setCiudades(Service.instance().search(new Ciudad()));
     }
     public void search(Vuelo filter) throws  Exception{
         if(Service.instance().read(filter) != null){
@@ -23,7 +25,7 @@ public class Controller {
             model.setMode(Application.MODE_CREATE);
         }
         model.setFilter(filter);
-        model.setCurrent(Service.instance().read(filter));
+        //model.setCurrent(Service.instance().read(filter));
         model.setList(Service.instance().search(model.getFilter()));
     }
 
@@ -37,7 +39,7 @@ public class Controller {
                 break;
         }
         model.setFilter(new Vuelo());
-        search(model.getFilter());
+        //search(model.getFilter());
     }
     public void edit(int row){
         Vuelo e = model.getList().get(row);
