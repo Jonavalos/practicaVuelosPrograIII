@@ -3,7 +3,6 @@ package pos.data;
 import pos.logic.*;
 import jakarta.xml.bind.annotation.*;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +23,9 @@ public class Data {
         ciudades = new ArrayList<>();
     }
 
-    public List<Vuelo> getActivos() { return vuelos; }
+    public List<Vuelo> getVuelos() { return vuelos; }
 
-    public List<Ciudad> getCategorias() { return ciudades; }
+    public List<Ciudad> getCiudades() { return ciudades; }
 
 
 }
