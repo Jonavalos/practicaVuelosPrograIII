@@ -119,7 +119,7 @@ public class View implements PropertyChangeListener {
                 numero.setEnabled(true);
                 break;
 
-            case CIUDADES:
+            case Model.CIUDADES:
                 origenCB.setModel(model.getCiudadesOrigen());
                 destinoCB.setModel(model.getCiudadesDestino());
                 break;
