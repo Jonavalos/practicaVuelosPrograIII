@@ -45,7 +45,7 @@ public class Controller {
         Vuelo e = model.getList().get(row);
         try {
             model.setMode(Application.MODE_EDIT);
-            model.setCurrent(Service.instance().read(e));
+            model.setCurrent(Service.instance().readNumero(e));
         } catch (Exception ex) {}
     }
 

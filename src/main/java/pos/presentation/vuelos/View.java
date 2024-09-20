@@ -100,8 +100,8 @@ public class View implements PropertyChangeListener {
                 numero.setText("" + model.getCurrent().getNumero());
                 origenCB.setSelectedItem(model.getCurrent().getOrigen());
                 destinoCB.setSelectedItem(model.getCurrent().getDestino());
-                salidaCB.setSelectedItem(model.getCurrent().getSalida());
-                llegadaCB.setSelectedItem(model.getCurrent().getLlegada());
+                salidaCB.setSelectedIndex(model.getCurrent().getSalida()-1);
+                llegadaCB.setSelectedIndex(model.getCurrent().getLlegada()-1);
                 if(model.getMode()== Application.MODE_EDIT){
                     numero.setEnabled(false);
                 } break;
