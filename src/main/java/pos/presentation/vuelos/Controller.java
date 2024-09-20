@@ -39,7 +39,7 @@ public class Controller {
                 break;
         }
         model.setFilter(new Vuelo());
-        //search(model.getFilter());
+        model.setList(model.getList());
     }
     public void edit(int row){
         Vuelo e = model.getList().get(row);

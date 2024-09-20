@@ -37,13 +37,21 @@ public class View implements PropertyChangeListener {
     private JPanel panelListado;
     private JPanel panel1;
     private JTable listado;
+    private JLabel salidaLbl;
+    private JLabel llegadaLbl;
 
     public View() {
         guardarButton.addActionListener(new ActionListener() { //actualizar lista al guaradar
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    //if (validate()){}
                     controller.save(take());
+                    origenCB.setSelectedIndex(0);
+                    destinoCB.setSelectedIndex(0);
+                    salidaCB.setSelectedIndex(0);
+                    llegadaCB.setSelectedIndex(0);
+                    numero.setEnabled(true);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Información", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -141,7 +149,55 @@ public class View implements PropertyChangeListener {
             throw new Exception("Valores invalidos");
         }
     }
+    private boolean validate() {
+        boolean valid = true;
+        if (numero.getText().isEmpty()) {
+            valid = false;
+            numeroLbl.setBorder(Application.BORDER_ERROR);
+            numeroLbl.setToolTipText("numero requerido");
+        } else {
+            numeroLbl.setBorder(null);
+            numeroLbl.setToolTipText(null);
+        }
 
+        if (origenCB.getSelectedItem() == null) {
+            valid = false;
+            origenLbl.setBorder(Application.BORDER_ERROR);
+            origenLbl.setToolTipText("origen requerido");
+        } else {
+            origenLbl.setBorder(null);
+            origenLbl.setToolTipText(null);
+        }
+
+        if (destinoCB.getSelectedItem() == null) {
+            valid = false;
+            destinoLbl.setBorder(Application.BORDER_ERROR);
+            destinoLbl.setToolTipText("destino requerido");
+        } else {
+            destinoLbl.setBorder(null);
+            destinoLbl.setToolTipText(null);
+        }
+
+        if (salidaCB.getSelectedItem() == null) {
+            valid = false;
+            salidaLbl.setBorder(Application.BORDER_ERROR);
+            salidaLbl.setToolTipText("salida requerida");
+        } else {
+            salidaLbl.setBorder(null);
+            salidaLbl.setToolTipText(null);
+        }
+
+        if (llegadaCB.getSelectedItem() == null) {
+            valid = false;
+            llegadaLbl.setBorder(Application.BORDER_ERROR);
+            llegadaLbl.setToolTipText("llegada requerida");
+        } else {
+            llegadaLbl.setBorder(null);
+            llegadaLbl.setToolTipText(null);
+        }
+
+        return valid;
+    }
     // MVC
     private pos.presentation.vuelos.Model model;
     private pos.presentation.vuelos.Controller controller;
