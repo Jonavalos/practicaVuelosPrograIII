@@ -1,20 +1,26 @@
 package pos.logic;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlID;
+
 import java.util.Objects;
 
 //
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Vuelo {
-    Integer numero;
+    @XmlID
+    String numero;
     Ciudad origen;
     Ciudad destino;
     Integer salida;
     Integer llegada;
 
     public Vuelo(){
-        this(0, new Ciudad(),new Ciudad(),0,0);
+        this("", new Ciudad(),new Ciudad(),0,0);
     }
 
-    public Vuelo(Integer numero,Ciudad origen, Ciudad destino, Integer salida, Integer llegada) {
+    public Vuelo(String numero,Ciudad origen, Ciudad destino, Integer salida, Integer llegada) {
         this.numero = numero;
         this.origen = origen;
         this.destino = destino;
@@ -22,11 +28,11 @@ public class Vuelo {
         this.llegada = llegada;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

@@ -139,7 +139,7 @@ public class View implements PropertyChangeListener {
     public Vuelo take() throws Exception{
         try{
             Vuelo e = new Vuelo();
-            e.setNumero(Integer.parseInt(numero.getText()));
+            e.setNumero(numero.getText());
             e.setOrigen((Ciudad) origenCB.getSelectedItem());
             e.setDestino((Ciudad) destinoCB.getSelectedItem());
             e.setSalida(Integer.parseInt((String) salidaCB.getSelectedItem()));
